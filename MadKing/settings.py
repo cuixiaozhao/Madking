@@ -37,8 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'apps.assets.apps.AssetsConfig',
-    'apps.user.apps.UserConfig',
+    'apps.assets',
+    'apps.user',
 ]
 
 MIDDLEWARE = [
@@ -77,8 +77,12 @@ WSGI_APPLICATION = 'MadKing.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'MadKing',
+        'USER':'root',
+        'PASSWORD':'Tqtl911!@%*)',
+        'HOST':'mysql.cuixiaozhao.com',
+        'PORT':'3306',
     }
 }
 
@@ -117,3 +121,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+AUTH_USER_MODEL = 'assets.UserProfile'

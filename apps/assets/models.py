@@ -1,8 +1,23 @@
-from apps.assets.myauth import UserProfile
 from django.db import models
+from apps.assets.myauth import UserProfile
+
+from django.contrib.auth.models import User
 
 
 # Create your models here.
+
+
+# class UserProfile(User):
+#     """"""
+#     name = models.CharField(max_length=32, verbose_name='姓名')
+#
+#     class Meta:
+#         super(User.Meta)
+#         verbose_name = '用户配置'
+#         verbose_name_plural = verbose_name
+#
+#     def __str__(self):
+#         return self.name
 
 
 class Asset(models.Model):
@@ -237,7 +252,7 @@ class Disk(models.Model):
     class Meta:
         verbose_name = '硬盘'
         verbose_name_plural = verbose_name
-        unique_together = ('server', 'slot')  # 联合唯一；
+        unique_together = ('asset', 'slot')  # 联合唯一；
 
     def __str__(self):
         return '%s:slot:%s capacity:%s' % (self.asset_id, self.slot, self.capacity)
@@ -356,8 +371,8 @@ class IDC(models.Model):
 class Tag(models.Model):
     """标签信息"""
     name = models.CharField(max_length=32, unique=True, verbose_name='Tag Name')
-    creator = models.ForeignKey('UserProfile',verbose_name='创建人')
-    create_date = models.DateField(auto_now_add=True,verbose_name='创建时间')
+    creator = models.ForeignKey('UserProfile', verbose_name='创建人')
+    create_date = models.DateField(auto_now_add=True, verbose_name='创建时间')
 
     class Meta:
         verbose_name = '标签信息'
@@ -427,7 +442,7 @@ class NewAssetApprovalZone(models.Model):
     model = models.CharField(max_length=128, blank=True, null=True, verbose_name='类型')
     ram_size = models.IntegerField(blank=True, null=True, verbose_name='内存大小(MB)')
     cpu_model = models.CharField(max_length=128, blank=True, null=True, verbose_name='CPU类型')
-    cpu_count = models.IntegerField(max_length=128, blank=True, null=True, verbose_name='CPU数量')
+    cpu_count = models.IntegerField(blank=True, null=True, verbose_name='CPU数量')
     cpu_core_count = models.IntegerField(blank=True, null=True, verbose_name='CPU核心数量')
     os_distribution = models.CharField(max_length=64, blank=True, null=True, verbose_name='发行版本')
     os_type = models.CharField(max_length=64, blank=True, null=True, verbose_name='系统类型')
