@@ -52,9 +52,9 @@ class Asset(models.Model):
     price = models.FloatField(blank=True, null=True, verbose_name='价格')
     # blank和null均为True，一般都是并存！
     business_unit = models.ForeignKey('BusinessUnit', blank=True, null=True, verbose_name='所属业务线')
-    tags = models.ManyToManyField('Tag', blank=True, verbose_name='标签')
     admin = models.ForeignKey('UserProfile', blank=True, null=True, verbose_name='资产管理员')
     idc = models.ForeignKey('IDC', blank=True, null=True, verbose_name='IDC机房')
+    tags = models.ManyToManyField('Tag', blank=True, verbose_name='标签')# ManyToManyField,null=True不需要写！
     # status = models.ForeignKey('Status', default=1, verbose_name='设备状态')
     # configuration = models.OneToOneField('Configuration', blank=True, null=True, verbose_name='配置管理')
     memo = models.TextField(blank=True, null=True, verbose_name='备注')

@@ -26,7 +26,7 @@ SECRET_KEY = '$3q(t9@lq7-%$v9c_+*@fu9=c85=fdu1cl*l%%&i@1h&fkdjqi'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -44,6 +44,8 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    # 使用中文
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -79,10 +81,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'MadKing',
-        'USER':'root',
-        'PASSWORD':'Tqtl911!@%*)',
-        'HOST':'mysql.cuixiaozhao.com',
-        'PORT':'3306',
+        'USER': 'root',
+        'PASSWORD': 'Tqtl911!@%*)',
+        'HOST': 'mysql.cuixiaozhao.com',
+        'PORT': '3306',
     }
 }
 
@@ -106,10 +108,10 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
-
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
+# admin支持中文显示；
+LANGUAGE_CODE = 'zh-hans'
+# 调整时区为中国；
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
